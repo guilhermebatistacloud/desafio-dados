@@ -1,0 +1,36 @@
+# Arquivo de credenciais AWS
+.env_kafka_connect
+
+# Diretório de dados do PostgreSQL
+postgres/data/
+postgres/*.log
+
+# Dados de volumes persistentes (se houver)
+**/volumes/
+**/data/
+
+# Notebooks Jupyter
+*.ipynb_checkpoints
+
+# PyCache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Arquivos temporários de editor
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Arquivos do VSCode
+.vscode/
+
+# Arquivos do JetBrains
+.idea/
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
