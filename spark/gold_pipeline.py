@@ -32,4 +32,12 @@ df_agg.write \
 
 print(f"✔️ Dados tratados salvos no banco : tabela -> {table}")
 
+df_kafka = df_agg.select(to_json(struct("*")).alias("value"))
+
+df_kafka.write \
+    .format("kafka") \
+    .option("kafka.bootstrap.servers", "broker:9092") \
+    .option("topic", "gold_data") \
+    .save()
+
 spark.stop()

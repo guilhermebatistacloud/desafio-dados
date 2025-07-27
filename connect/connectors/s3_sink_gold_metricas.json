@@ -1,0 +1,15 @@
+{
+  "name": "s3-sink-gold-metricas",
+  "config": {
+    "connector.class": "io.confluent.connect.s3.S3SinkConnector",
+    "tasks.max": "1",
+    "topics": "gold-metricas",
+    "s3.bucket.name": "desafio-pos-xp",
+    "s3.region": "us-east-2",
+    "s3.part.size": 5242880,
+    "flush.size": 1,
+    "storage.class": "io.confluent.connect.s3.storage.S3Storage",
+    "format.class": "io.confluent.connect.s3.format.json.JsonFormat",
+    "schema.compatibility": "NONE"
+  }
+}

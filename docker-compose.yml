@@ -51,13 +51,15 @@ services:
     env_file:
       - .env_kafka_connect
     environment:
+      CONNECT_REST_HOST_NAME: connect
       CONNECT_REST_ADVERTISED_HOST_NAME: connect
-      CONNECT_BOOTSTRAP_SERVERS: broker:9092
       CONNECT_REST_PORT: 8083
-      CONNECT_GROUP_ID: "kafka-connect-group"
+      CONNECT_BOOTSTRAP_SERVERS: broker:9092
+      CONNECT_GROUP_ID: kafka-connect-group
       CONNECT_CONFIG_STORAGE_TOPIC: connect-configs
       CONNECT_OFFSET_STORAGE_TOPIC: connect-offsets
       CONNECT_STATUS_STORAGE_TOPIC: connect-status
+      CONNECT_OFFSET_FLUSH_INTERVAL_MS: 10000
       CONNECT_KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
       CONNECT_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
       CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE: "false"
@@ -66,11 +68,14 @@ services:
       CONNECT_INTERNAL_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
       CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
       CONNECT_LOG4J_LOGGERS: org.reflections=ERROR
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
 
   kafka-ui:
-    image: provectuslabs/kafka-ui:latest
+    image: provectuslabs/kafka-ui
     container_name: kafka-ui
     ports:
       - "8080:8080"
